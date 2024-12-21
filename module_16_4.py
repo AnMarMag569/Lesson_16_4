@@ -13,7 +13,7 @@ users : List[User] = []
 async def read_users():
     return [user for user in users]
 
-@app.post("/user", response_model=User)
+@app.post("/user{username}/{age}/", response_model=User)
 async def post_user(username, age):
     new_id = max((u.id for u in users), default=0) + 1
     new_user = User(id=new_id, username=username, age=age)
